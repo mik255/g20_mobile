@@ -20,7 +20,7 @@ class ChartResults {
     grossProfit = json['gross_profit'];
     profitMargin = json['profit_margin'];
     salesAmount = json['sales_amount'];
-    averageTicket = json['average_ticket'];
+    averageTicket = double.parse(json['average_ticket'].toString());
   }
 
   Map<String, dynamic> toJson() {
