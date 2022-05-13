@@ -15,7 +15,7 @@ class ChartResults {
         this.averageTicket});
 
   ChartResults.fromJson(Map<String, dynamic> json) {
-    totalPrice = json['total_price'];
+    totalPrice = double.parse(json['total_price'].toString());
     totalPriceSquare = json['total_price_square'];
     grossProfit = json['gross_profit'];
     profitMargin = json['profit_margin'];

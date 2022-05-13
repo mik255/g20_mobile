@@ -18,7 +18,7 @@ class G20Sucess extends G20Response {
 
 class G20Http {
   Dio dio = Dio();
-  String baseEndpoint = 'http://192.168.0.50:3000';
+  String baseEndpoint = 'https://g20-api-rest.herokuapp.com';
 
   Future<G20Response> requestHttp(String route, String method,
       {Map<String, dynamic>? data}) async {
