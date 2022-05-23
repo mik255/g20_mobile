@@ -105,6 +105,7 @@ class PaymentTypePage extends StatelessWidget {
                                             totalPrice: shoppingBloc.total,
                                             totalPriceSquare:
                                                 shoppingBloc.totalSquare);
+                                        print(receipt);
                                         Navigator.of(context).push(
                                             MaterialPageRoute(
                                                 builder: (context) =>
