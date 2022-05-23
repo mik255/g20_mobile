@@ -36,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
       }
       if (state is LoginSucessState) {
         print('rodou');
-        WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+        WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
           Navigator.of(context)
               .push(MaterialPageRoute(builder: (context) => CategoryProvider()));
         });

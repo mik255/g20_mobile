@@ -23,7 +23,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     if(event.credentials.passWord==''&&event.credentials.passWord==''){
       yield LoginErroState(erro: 'Preencha todos os campos');
     }
-    event.credentials = Credentials(cpfCnpj: event.credentials.cpfCnpj, passWord: event.credentials.passWord);
+    //event.credentials = Credentials(cpfCnpj: event.credentials.cpfCnpj, passWord: event.credentials.passWord);
+    event.credentials = Credentials(cpfCnpj: '0', passWord: '123');
     G20Response g20response = await Repository().login(event.credentials);
 
     if (g20response is G20Sucess) {

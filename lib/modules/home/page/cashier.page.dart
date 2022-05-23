@@ -47,7 +47,7 @@ class _CashierPageState extends State<CashierPage> {
             },
             builder: (context, state) {
               if(state is ShoppingMainState)
-              WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+              WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
                 showModelSheet(context,state.total,_scaffoldKey,close:state.total==0&&!MainStances.settingsMainStances.settings!.period,
                     onTap:(){
                       ShoppingBloc? shoppingBloc = BlocProvider.of<ShoppingBloc>(context);

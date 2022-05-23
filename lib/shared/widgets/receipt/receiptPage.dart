@@ -18,15 +18,6 @@ import 'package:g20newapp/shared/widgets/loadingWidget.dart';
 import 'package:g20newapp/shared/widgets/showModel.dart';
 import 'package:screenshot/screenshot.dart';
 import 'model/receipt.dart';
-import 'dart:ui' as ui;
-
-import 'package:flutter/material.dart';
-import 'dart:async';
-import 'dart:typed_data';
-import 'dart:ui' as ui;
-import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 import 'dart:io';
 class ReceiptPage extends StatefulWidget {
   ReceiptPage({
@@ -84,7 +75,7 @@ class _ReceiptPageState extends State<ReceiptPage> {
   }
 
   Widget _page(BuildContext context) {
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       showModelSheet(context, widget.receipt.totalPrice!, scaffoldState,
           close: false, onTap: () async {
         isLoading = true;
@@ -446,7 +437,7 @@ class _OrderPageState extends State<OrderPage> {
   }
 
   _page(BuildContext context) {
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       showModelSheet(context, 0, scaffoldState,
           close: false, onTap: () async {
             isLoading = true;

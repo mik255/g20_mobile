@@ -72,10 +72,10 @@ class ChartResultsPage extends StatelessWidget {
                                               MainAxisAlignment.center,
                                           children: [
                                             Text(
-                                              'Lucro com g20',
+                                              'Lucro com G20',
                                               style: TextStyle(
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: 16.0,
+                                                  fontWeight: FontWeight.w800,
+                                                  fontSize: 18.0,
                                                   color: Colors.grey[700]),
                                             ),
                                             Text(

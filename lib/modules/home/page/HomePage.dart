@@ -82,7 +82,7 @@ class _HomePageState extends State<HomePage> {
                       listener: (ctx,state){},
                       builder: (ctx,state) {
                         if(state is ShoppingMainState){
-                          WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+                          WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
                             showModelSheet(context,state.total,_scaffoldKey,
                                 close:state.category.stores!.length==0,
                                 onTap:(){
