@@ -36,7 +36,7 @@ class Store {
  double getTotal(){
     double total =0;
     products!.forEach((element) {
-      total+=(element.price!*element.count);
+      total+=(element.price!*element.count!);
     });
     return total;
   }

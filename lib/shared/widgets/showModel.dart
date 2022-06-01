@@ -6,7 +6,7 @@ import 'modalSheet.dart';
 PersistentBottomSheetController? persistentBottomSheetController;
 
 showModelSheet(
-    BuildContext context, double total, GlobalKey<ScaffoldState> scaffoldState,
+    BuildContext context, double total, GlobalKey<ScaffoldState> scaffoldState,String text,
     {bool close = false, required Function onTap}) {
   try {
     persistentBottomSheetController?.close();
@@ -16,7 +16,7 @@ showModelSheet(
   }
 
   ModalSheet modalSheet = ModalSheet(
-      value: FormatMoney(total), textButton: 'Pagamento', onTap: onTap);
+      value: FormatMoney(total), textButton: text, onTap: onTap);
   persistentBottomSheetController = scaffoldState.currentState?.showBottomSheet(
     (context) => modalSheet,
     backgroundColor: Colors.blue,

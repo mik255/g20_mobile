@@ -4,7 +4,7 @@ class Product {
   String? img;
   double? price;
   double? priceSquare;
-  int count =0;
+  int? count;
   int? iV;
 
   Product(
@@ -13,7 +13,7 @@ class Product {
         this.img,
         this.price,
         this.priceSquare,
-        this.count =0,
+        this.count,
         this.iV});
 
   Product.fromJson(Map<String, dynamic> json) {

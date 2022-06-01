@@ -27,6 +27,11 @@ class CategoriaBloc extends Bloc<CategoriaEvent, CategoriasState> {
         categoryList.add(new Category.fromJson(v));
 
       });
+      if(MainStances.settingsMainStances.settings==null){
+        categoryList = categoryList.where((element) => element.name!='Pedidos').toList();
+        yield CategoriasInitialState(categoryList: categoryList);
+      }
+
       if(MainStances.settingsMainStances.settings!.period){
         categoryList = categoryList.where((element) => element.name=='Pedidos').toList();
       }else{

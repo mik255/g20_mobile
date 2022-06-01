@@ -78,15 +78,19 @@ class ShoppingBloc extends Bloc<ShoppingEvent, ShoppingState> {
   }
 
   Stream<ShoppingState> addProduct(Product product) async* {
-    product.count++;
+    int count = product.count!;
+    count++;
+    product.count = count;
     total += product.price!;
     totalSquare += product.priceSquare!;
     yield ShoppingMainState(category: category, total: total);
   }
 
   Stream<ShoppingState> RemoveProduct(Product product) async* {
-    if (product.count > 0) {
-      product.count--;
+    if (product.count! > 0) {
+      int count = product.count!;
+      count--;
+      product.count = count;
       total -= product.price!;
       totalSquare -= product.priceSquare!;
     }

@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:g20newapp/modules/categorias/models/story.dart';
 import 'package:g20newapp/shared/Shopping/bloc/bloc.dart';
 import 'package:g20newapp/shared/Shopping/bloc/events.dart';
-import 'package:g20newapp/shared/Shopping/bloc/states.dart';
 import 'package:g20newapp/shared/user/bloc/bloc.dart';
 import 'package:g20newapp/shared/widgets/receipt/model/receipt.dart';
+import 'package:g20newapp/shared/widgets/receipt/model/receiptStories.dart';
 import 'package:g20newapp/shared/widgets/receipt/receiptPage.dart';
 
 class PaymentTypePage extends StatelessWidget {
@@ -13,21 +13,21 @@ class PaymentTypePage extends StatelessWidget {
 
   List<Map<String, dynamic>> pagamentos = [
     {
-      'nome': 'Pix',
+      'nome': 'pix',
       'img': 'https://psfonttk.com/wp-content/uploads/2021/08/logo-pix-png.png'
     },
     {
-      'nome': 'Dinheiro',
+      'nome': 'money',
       'img':
           'https://d168rbuicf8uyi.cloudfront.net/wp-content/uploads/2019/12/17155939/dinheiro-1024x682.jpg'
     },
     {
-      'nome': 'Cartão',
+      'nome': 'logist',
       'img':
           'https://www.remessaonline.com.br/blog/wp-content/uploads/2022/01/shutterstock_1677488197-scaled.jpg.optimal.jpg'
     },
     {
-      'nome': 'Lojista',
+      'nome': 'card',
       'img':
           'https://www.megalojista.com.br/media/wysiwyg/New-Banners-Mega-Lojista---Porto-Theme-1.jpg'
     },
@@ -64,7 +64,7 @@ class PaymentTypePage extends StatelessWidget {
                 ],
                 color: Colors.white,
               ),
-              height: MediaQuery.of(context).size.height * 0.8,
+              height: MediaQuery.of(context).size.height,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -87,32 +87,41 @@ class PaymentTypePage extends StatelessWidget {
                                   children: [
                                     InkWell(
                                       onTap: () {
-                                         shoppingBloc.paymentType = 'card';
+                                        shoppingBloc.paymentType = pagamentos[index]['nome'];
                                         List<Store> stores = shoppingBloc
                                             .category.stores!
                                             .where((e) => (e.products!
-                                                    .where((e) => e.count > 0)
+                                                    .where((e) => e.count! > 0)
                                                     .length >
                                                 0))
                                             .toList();
+
+                                        List<ReceiptStories> receiptStories = [];
+                                        stores.forEach((element) {
+                                          receiptStories.add(
+                                            ReceiptStories(storeId: element,products: element.products)
+                                          );
+                                        });
+
                                         Receipt receipt = Receipt(
                                             userId: userBloc.user!.sId,
                                             categoryId:
                                                 shoppingBloc.category.sId,
                                             paymentType:
                                                 shoppingBloc.paymentType,
-                                            stories: stores,
+                                            receiptStories: receiptStories,
                                             totalPrice: shoppingBloc.total,
                                             totalPriceSquare:
-                                                shoppingBloc.totalSquare);
+                                                shoppingBloc.totalSquare,
+                                            date: DateTime.now().toIso8601String());
                                         print(receipt);
                                         Navigator.of(context).push(
                                             MaterialPageRoute(
                                                 builder: (context) =>
                                                     ReceiptPage(
                                                       receipt: receipt,
-                                                      callback:
-                                                          (Receipt receipt) async{
+                                                      callback: (Receipt
+                                                          receipt) async {
                                                         shoppingBloc.add(
                                                             SendReceiptEvent(
                                                                 receipt:
