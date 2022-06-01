@@ -4,7 +4,7 @@ import 'package:g20newapp/modules/categorias/models/category.dart';
 import 'package:g20newapp/modules/categorias/models/product.dart';
 import 'package:g20newapp/modules/home/models/order.model.dart';
 import 'package:g20newapp/shared/Shopping/bloc/states.dart';
-import 'package:g20newapp/shared/Shopping/repository/repository.dart';
+import 'package:g20newapp/shared/Shopping/data/repository.dart';
 import 'package:g20newapp/shared/widgets/receipt/model/receipt.dart';
 
 import 'events.dart';
