@@ -4,7 +4,7 @@ import 'package:g20newapp/modules/categorias/models/category.dart';
 import 'package:g20newapp/modules/categorias/models/product.dart';
 import 'package:g20newapp/modules/home/models/order.model.dart';
 import 'package:g20newapp/shared/Shopping/bloc/states.dart';
-import 'package:g20newapp/shared/Shopping/repository/repository.dart';
+import 'package:g20newapp/shared/Shopping/data/repository.dart';
 import 'package:g20newapp/shared/widgets/receipt/model/receipt.dart';
 
 import 'events.dart';
@@ -73,20 +73,24 @@ class ShoppingBloc extends Bloc<ShoppingEvent, ShoppingState> {
     paymentType = '';
     totalSquare = 0;
     category = category..stores!.map((store) =>
-    store..products!.map((product) =>
+    store..paymentMethod=null..products!.map((product) =>
     product..count=0).toList()).toList();
   }
 
   Stream<ShoppingState> addProduct(Product product) async* {
-    product.count++;
+    int count = product.count!;
+    count++;
+    product.count = count;
     total += product.price!;
     totalSquare += product.priceSquare!;
     yield ShoppingMainState(category: category, total: total);
   }
 
   Stream<ShoppingState> RemoveProduct(Product product) async* {
-    if (product.count > 0) {
-      product.count--;
+    if (product.count! > 0) {
+      int count = product.count!;
+      count--;
+      product.count = count;
       total -= product.price!;
       totalSquare -= product.priceSquare!;
     }

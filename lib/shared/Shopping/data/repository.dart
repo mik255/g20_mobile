@@ -7,6 +7,7 @@ class Repository extends G20Http{
   String orderRoute = '/orders';
 
   Future<G20Response> sendReceipt(Receipt receipt) async{
+
     G20Response response = await super.requestHttp(receiptRoute, 'POST',
         data: {'receipt':receipt.toJson()});
     if(response is G20Sucess){

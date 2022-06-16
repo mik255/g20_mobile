@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:g20newapp/MainStances.dart';
 import 'package:g20newapp/core/http-client/http_client.dart';
 import 'package:g20newapp/modules/receiptHistory/bloc/ReceiptHistoryEvent.dart';
 import 'package:g20newapp/modules/receiptHistory/bloc/ReceiptHistoryState.dart';
@@ -22,7 +21,13 @@ class ReceiptHistoryBloc extends Bloc<ReceiptHistoryEvent, ReceiptHistoryState> 
     }
   }
 
-
+  double receiptTotal(List<Receipt> receiptList) {
+    double total = 0;
+    receiptList.forEach((element) {
+      total += element.totalPrice ?? 0;
+    });
+    return total;
+  }
   Stream<ReceiptHistoryState> getReceipts() async* {
     yield ReceiptHistoryLoading();
     G20Response g20response = await Repository().getReceipts(user.user!.sId!);
@@ -35,7 +40,6 @@ class ReceiptHistoryBloc extends Bloc<ReceiptHistoryEvent, ReceiptHistoryState> 
       yield ReceiptHistoryMainState(receiptList: receiptList);
     } else if (g20response is G20Exception) {
       throw g20response;
-      //yield CategoryErrorState(message: g20response.message ?? 'Generic error');
     }
   }
 

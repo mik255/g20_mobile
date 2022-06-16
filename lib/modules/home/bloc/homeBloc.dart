@@ -24,25 +24,4 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     yield HomeMainState();
   }
 
-
-  // Stream<HomeState> resetData() async* {
-  //   total = 0;
-  //   category.stores!.forEach((element) {
-  //     element.products!.forEach((element) {
-  //       element.count = 0;
-  //     });
-  //   });
-  //
-  //   yield HomeMainState(category: category, currentStore: category.stores![0]);
-  // }
-
-  // Stream<HomeState> addProduto(Product product, Store store) async* {
-  //   receiptBloc.add(CompraEventAddItem(product: product));
-  //   yield HomeMainState(category: category, currentStore: store);
-  // }
-  //
-  // Stream<HomeState> removeProductEvent(Product product, Store store) async* {
-  //   receiptBloc.add(CompraEventRemoveItem(product: product));
-  //   yield HomeMainState(category: category, currentStore: store);
-  // }
 }

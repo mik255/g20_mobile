@@ -14,6 +14,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  bool isStart = false;
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -33,7 +34,8 @@ class MyApp extends StatelessWidget {
         home: FutureBuilder<Object>(
             future: MainStances.settingsMainStances.fetchSettings(),
             builder: (context, snapshot) {
-              if(snapshot.connectionState == ConnectionState.done){
+              if(snapshot.connectionState == ConnectionState.done&&!isStart){
+                isStart =true;
                 return LoginProvider();
               }
               return G20Loading();

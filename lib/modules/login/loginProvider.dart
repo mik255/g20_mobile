@@ -5,6 +5,9 @@ import 'package:g20newapp/modules/login/bloc/states.dart';
 import 'package:g20newapp/modules/login/pages/loginPage.dart';
 import 'package:g20newapp/shared/user/bloc/bloc.dart';
 
+import 'bloc/loginEvent.dart';
+import 'login.builder.dart';
+
 class LoginProvider extends StatefulWidget {
   const LoginProvider({Key? key}) : super(key: key);
 
@@ -16,11 +19,10 @@ class _LoginProviderState extends State<LoginProvider> {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-
         providers: [
           BlocProvider<LoginBloc>(create: (BuildContext context) =>LoginBloc(
-              LoginInitialState(),BlocProvider.of<UserBloc>(context))),
+              LoginLoadingState(),BlocProvider.of<UserBloc>(context))..add(LoginInitEvent())),
         ],
-        child: LoginPage());
+        child: LoginBuilder());
   }
 }

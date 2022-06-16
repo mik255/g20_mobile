@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 
 class G20Response {}
@@ -30,7 +28,7 @@ class G20Http {
           data: data);
 
       print(baseEndpoint + route);
-
+      print('body:'+'$data');
       var response = await dio.fetch(options);
       return G20Sucess(response: response);
     } catch (e, _) {

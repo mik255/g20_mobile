@@ -16,11 +16,11 @@ class ChartResults {
 
   ChartResults.fromJson(Map<String, dynamic> json) {
     totalPrice = double.parse(json['total_price'].toString());
-    totalPriceSquare = json['total_price_square'];
-    grossProfit = json['gross_profit'];
-    profitMargin = json['profit_margin'];
+    totalPriceSquare = double.parse(json['total_price_square'].toString());
+    grossProfit = double.parse(json['gross_profit'].toString());
+    profitMargin = double.parse(json['profit_margin'].toString());
     salesAmount = json['sales_amount'];
-    averageTicket = json['average_ticket'];
+    averageTicket = double.parse(json['average_ticket'].toString());
   }
 
   Map<String, dynamic> toJson() {
