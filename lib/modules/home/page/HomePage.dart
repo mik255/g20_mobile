@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
                       appBar: AppBar(
                         shadowColor: Colors.transparent,
                         centerTitle: true,
-                        title: Text("Produtos"),
+                        title: Text(homebloc.shoppingBloc.category.name!),
                       ),
                       drawer: DrawerComponent(),
                       key: _scaffoldKey,
@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> {
                                               8.0, 16, 8, 0),
                                           child: SingleChildScrollView(
                                             child: Column(children: [
-                                              SearchComponent(),
+                                              SearchWidget(hintText: 'Procurar por um produto na loja',),
                                               SizedBox(
                                                 height: 10,
                                               ),

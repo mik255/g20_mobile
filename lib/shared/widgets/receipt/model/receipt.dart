@@ -2,7 +2,7 @@ import 'receiptStories.dart';
 class Receipt {
   String? userId;
   String? date;
-  String? categoryId;
+  String? categoryName;
   List<ReceiptStories>? receiptStories;
   double? totalPrice;
   double? totalPriceSquare;
@@ -11,7 +11,7 @@ class Receipt {
   Receipt(
       {this.userId,
         this.date,
-        this.categoryId,
+        this.categoryName,
         this.receiptStories,
         this.totalPrice,
         this.totalPriceSquare,
@@ -20,7 +20,7 @@ class Receipt {
   Receipt.fromJson(Map<String, dynamic> json) {
     userId = json['userId'];
     date = json['date'];
-    categoryId = json['categoryId'];
+    categoryName = json['categoryName'];
     if (json['ReceiptStories'] != null) {
       receiptStories = <ReceiptStories>[];
       json['ReceiptStories'].forEach((v) {
@@ -36,7 +36,7 @@ class Receipt {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['userId'] = this.userId;
     data['date'] = this.date;
-    data['categoryId'] = this.categoryId;
+    data['categoryName'] = this.categoryName;
     if (this.receiptStories != null) {
       data['ReceiptStories'] =
           this.receiptStories!.map((v) => v.toJson()).toList();

@@ -28,8 +28,7 @@ class CategoriaBloc extends Bloc<CategoriaEvent, CategoriasState> {
 
       });
       if(MainStances.settingsMainStances.settings==null){
-        categoryList = categoryList.where((element) => element.name!='Pedidos').toList();
-        yield CategoriasInitialState(categoryList: categoryList);
+        yield CategoryErrorState(message: 'error');
       }
 
       if(MainStances.settingsMainStances.settings!.period){

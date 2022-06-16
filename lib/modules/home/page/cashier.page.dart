@@ -19,6 +19,8 @@ import 'package:g20newapp/shared/widgets/receipt/model/receipt.dart';
 import 'package:g20newapp/shared/widgets/receipt/receiptPage.dart';
 import 'package:g20newapp/shared/widgets/showModel.dart';
 
+import 'orderPage.dart';
+
 
 class CashierPage extends StatefulWidget {
   CashierPage({
@@ -51,43 +53,8 @@ class _CashierPageState extends State<CashierPage> {
                 showModelSheet(context,state.total,_scaffoldKey,'Pagamento',
                     close:state.total==0&&!MainStances.settingsMainStances.settings!.period,
                     onTap:(){
-                      ShoppingBloc? shoppingBloc = BlocProvider.of<ShoppingBloc>(context);
-                      User? user= BlocProvider.of<UserBloc>(context).user;
-                  if(MainStances.settingsMainStances.settings!.period){
-                    shoppingBloc.paymentType = 'card';
-                    List<Store> stores = shoppingBloc
-                        .category.stores!
-                        .where((e) => (e.products!
-                        .where((e) => e.count! > 0)
-                        .length >
-                        0))
-                        .toList();
-                    List<Product> products =[];
-                    stores.forEach((element) {
-                      element.products!.forEach((element) {
-                        products.add(element);
-                      });
-                    });
-                    Order order = Order(
-                        user: user!.sId,
-                        products: products
-                    );
-                    Navigator.of(context).push(
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                OrderPage(
-                                  order:order,
-                                  callback:
-                                      (Order order) async{
-                                    shoppingBloc.add(
-                                        SendOrderEvent(
-                                            order: order));
-                                  },
-                                )));
-                    return;
-                  }
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => PaymentTypePage()));
+                          builder: (context) => PaymentTypePage(total: state.total,)));
                     }
                 );
               });

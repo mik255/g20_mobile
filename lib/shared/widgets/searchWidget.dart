@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 
-class SearchComponent extends StatelessWidget {
-  const SearchComponent({Key? key}) : super(key: key);
-
+class SearchWidget extends StatelessWidget {
+  SearchWidget({Key? key,required this.hintText}) : super(key: key);
+  String hintText;
   @override
   Widget build(BuildContext context) {
       return Container(
@@ -28,7 +28,7 @@ class SearchComponent extends StatelessWidget {
                   child: TextField(
                     decoration: InputDecoration(
                         border: InputBorder.none,
-                        hintText: "Procure por um produto na loja"),
+                        hintText: hintText),
                   ),
                 )),
             Padding(

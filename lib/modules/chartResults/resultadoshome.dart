@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:g20newapp/modules/chartResults/bloc/chartResultsBloc.dart';
 import 'package:g20newapp/modules/chartResults/bloc/chartResultsState.dart';
+import 'package:g20newapp/shared/theme/style.dart';
 import 'package:g20newapp/shared/util/SharedFunctions.dart';
 import 'package:g20newapp/shared/widgets/loadingWidget.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+
+import 'components/iconActionRow.dart';
 
 class ChartResultsPage extends StatelessWidget {
   ChartResultsPage({Key? key}) : super(key: key);
@@ -52,7 +55,7 @@ class ChartResultsPage extends StatelessWidget {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: _iconActionRow(),
+                                child: iconActionRow(),
                               ),
                               Padding(
                                 padding:
@@ -108,13 +111,7 @@ class ChartResultsPage extends StatelessWidget {
                                           borderRadius:
                                               BorderRadius.circular(25),
                                           boxShadow: [
-                                            BoxShadow(
-                                              color: Colors.black
-                                                  .withOpacity(0.15),
-                                              spreadRadius: 5,
-                                              blurRadius: 7,
-                                              offset: Offset(0, 2),
-                                            )
+                                            boxShadow()
                                           ],
                                           color: Colors.white,
                                         ),
@@ -183,40 +180,7 @@ class ChartResultsPage extends StatelessWidget {
         ));
   }
 
-  Widget _iconActionRow() {
-    return Container(
-      height: 80,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(35),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.2),
-            spreadRadius: 5,
-            blurRadius: 7,
-            offset: Offset(0, 2),
-          )
-        ],
-        color: Colors.white,
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            IconButton(
-              icon: Icon(Icons.arrow_back_ios),
-              onPressed: () {},
-            ),
-            Text('Esta Semana'),
-            IconButton(
-              icon: Icon(Icons.arrow_forward_ios),
-              onPressed: () {},
-            )
-          ],
-        ),
-      ),
-    );
-  }
+
 
   Widget _customContainer(String titulo, double value, Color color) {
     return Container(

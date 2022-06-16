@@ -11,3 +11,8 @@ class G20Loading extends StatelessWidget {
     ));
   }
 }
+// return Scaffold(
+// // body: Center(
+// // child: Image.asset('assets/images/logif.gif',scale: 0.5,),
+// // ));
+// // }

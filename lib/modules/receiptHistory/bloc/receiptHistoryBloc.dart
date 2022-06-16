@@ -21,7 +21,13 @@ class ReceiptHistoryBloc extends Bloc<ReceiptHistoryEvent, ReceiptHistoryState> 
     }
   }
 
-
+  double receiptTotal(List<Receipt> receiptList) {
+    double total = 0;
+    receiptList.forEach((element) {
+      total += element.totalPrice ?? 0;
+    });
+    return total;
+  }
   Stream<ReceiptHistoryState> getReceipts() async* {
     yield ReceiptHistoryLoading();
     G20Response g20response = await Repository().getReceipts(user.user!.sId!);
