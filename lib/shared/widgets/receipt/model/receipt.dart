@@ -1,4 +1,5 @@
 import 'receiptStories.dart';
+
 class Receipt {
   String? userId;
   String? date;
@@ -7,15 +8,18 @@ class Receipt {
   double? totalPrice;
   double? totalPriceSquare;
   String? paymentType;
+  bool isExcluded = false;
 
-  Receipt(
-      {this.userId,
-        this.date,
-        this.categoryName,
-        this.receiptStories,
-        this.totalPrice,
-        this.totalPriceSquare,
-        this.paymentType});
+  Receipt({
+    this.userId,
+    this.date,
+    this.categoryName,
+    this.receiptStories,
+    this.totalPrice,
+    this.totalPriceSquare,
+    this.paymentType,
+    this.isExcluded = false,
+  });
 
   Receipt.fromJson(Map<String, dynamic> json) {
     userId = json['userId'];
@@ -46,4 +50,5 @@ class Receipt {
     data['payment_type'] = this.paymentType;
     return data;
   }
+
 }

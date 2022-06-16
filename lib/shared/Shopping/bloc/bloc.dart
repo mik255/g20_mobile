@@ -73,7 +73,7 @@ class ShoppingBloc extends Bloc<ShoppingEvent, ShoppingState> {
     paymentType = '';
     totalSquare = 0;
     category = category..stores!.map((store) =>
-    store..products!.map((product) =>
+    store..paymentMethod=null..products!.map((product) =>
     product..count=0).toList()).toList();
   }
 

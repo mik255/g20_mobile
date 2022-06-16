@@ -6,90 +6,85 @@ import 'package:g20newapp/shared/util/dateUtil.dart';
 import 'package:g20newapp/shared/widgets/receipt/model/receipt.dart';
 import 'package:g20newapp/shared/widgets/receipt/receiptPage.dart';
 
-Widget item(
-  BuildContext context,
-  Receipt e,
-) {
-  return InkWell(
-    onTap: () {
-      G20Navigator.navigateTo(context, ReceiptPage(
-        receipt: e,
-      ));
-    },
-    child: Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [boxShadow()],
-      ),
-      height: 75,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  e.categoryName??'',
-                  style: TextStyle(
-                    color: Color(0xff3C3C3C),
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                Container(
-                  width: 75,
-                  height: 30,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
-                        child: Icon(
-                          Icons.money,
-                          color: Color(0xff3C3C3C),
-                        ),
-                      ),
-                      Flexible(
-                        child: Center(
-                          child: Text(
-                            e.paymentType ?? '',
-                            style: TextStyle(
-                                overflow: TextOverflow.ellipsis,
-                                color: Color(0xff3C3C3C),
-                                fontWeight: FontWeight.w400),
+
+
+class Item extends StatefulWidget {
+   Item({Key? key,required this.e,required this.isExcluded}) : super(key: key);
+  Receipt e;
+  bool isExcluded;
+  @override
+  State<Item> createState() => _ItemState();
+}
+
+class _ItemState extends State<Item> {
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        G20Navigator.navigateTo(context, ReceiptPage(
+          receipt: widget.e,
+        ));
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [boxShadow()],
+        ),
+        height: 75,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: [
+              if(widget.isExcluded)
+              Checkbox(value: widget.e.isExcluded, onChanged: (value){
+                setState(() {
+                  widget.e.isExcluded = value!;
+                });
+              },activeColor: Colors.red,),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          widget.e.categoryName??'',
+                          style: TextStyle(
+                            color: Color(0xff3C3C3C),
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  AppDateUtil.dateToString(
-                    DateTime.parse(
-                      e.date!,
+                      ],
                     ),
-                  ),
-                  style: TextStyle(
-                      color: Color(0xff3C3C3C),
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          AppDateUtil.dateToString(
+                            DateTime.parse(
+                              widget.e.date!,
+                            ),
+                          ),
+                          style: TextStyle(
+                              color: Color(0xff3C3C3C),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400),
+                        ),
+                        Text(
+                          FormatMoney(widget.e.totalPrice!),
+                          style: TextStyle(
+                              color: Color(0xff3C3C3C), fontWeight: FontWeight.w400),
+                        )
+                      ],
+                    ),
+                  ],
                 ),
-                Text(
-                  FormatMoney(e.totalPrice!),
-                  style: TextStyle(
-                      color: Color(0xff3C3C3C), fontWeight: FontWeight.w400),
-                )
-              ],
-            ),
-          ],
+              ),
+            ],
+          ),
         ),
       ),
-    ),
-  );
+    );
+  }
 }

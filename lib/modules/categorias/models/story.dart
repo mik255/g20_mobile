@@ -5,7 +5,8 @@ class Store {
   String? name;
   List<Product>? products;
   int? iV;
-
+  String? paymentMethod;
+  String? categoryName;
   Store({this.sId, this.pix, this.name, this.products, this.iV});
 
   Store.fromJson(Map<String, dynamic> json) {
@@ -32,6 +33,9 @@ class Store {
     }
     data['__v'] = this.iV;
     return data;
+  }
+  setPayment(String payment){
+    this.paymentMethod = payment;
   }
  double getTotal(){
     double total =0;

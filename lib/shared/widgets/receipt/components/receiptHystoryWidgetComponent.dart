@@ -2,7 +2,6 @@ import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:g20newapp/shared/navegator/g20Navigator.dart';
 import 'package:g20newapp/shared/theme/logo.dart';
 import 'package:g20newapp/shared/user/bloc/bloc.dart';
 import 'package:g20newapp/shared/user/model/user.dart';
@@ -11,7 +10,6 @@ import 'package:g20newapp/shared/util/dateUtil.dart';
 import 'package:g20newapp/shared/util/screamShot.dart';
 import 'package:g20newapp/shared/widgets/receipt/model/receipt.dart';
 import 'package:g20newapp/shared/widgets/showModel.dart';
-import 'package:g20newapp/shared/widgets/thankYouPage.dart';
 import 'package:screenshot/screenshot.dart';
 
 import 'popupMenu.dart';
@@ -20,7 +18,6 @@ Widget receiptHystoryWidgetComponent(
   BuildContext context,
   Receipt receipt,
   GlobalKey<ScaffoldState> scaffoldState,
-  String paymentMethod,
   ScreenshotController screenshotController,
   bool isBuy,
   Future<void> Function(Receipt receipt)? callback,
@@ -231,7 +228,7 @@ Widget receiptHystoryWidgetComponent(
                                                     Spacer(),
                                                     Text(
                                                       FormatMoney(
-                                                          receipt.totalPrice!),
+                                                          receipt.receiptStories![i].getTotalPrice()),
                                                       style: TextStyle(
                                                           color: Colors.white,
                                                           fontWeight:
@@ -271,33 +268,16 @@ Widget receiptHystoryWidgetComponent(
                                                     Row(
                                                       children: [
                                                         Text(
-                                                          '${paymentMethod} / Lojista',
+                                                          '${receipt.receiptStories![i].paymentType} / Lojista',
                                                           style: TextStyle(
                                                               color: Colors.white,
                                                               fontWeight:
                                                                   FontWeight.w400,
                                                               fontSize: 18),
                                                         ),
-                                                        ReceiptChangePaymentent(callback: (value){
-                                                          ScaffoldMessenger.of(context).showMaterialBanner(
-                                                              MaterialBanner(
-                                                                backgroundColor: Colors.blue,
-                                                                content:
-                                                                Text('Funcionalidade ainda não implementada',
-                                                                  style: TextStyle(color:Colors.white),),
-                                                                leading: CircleAvatar(
-                                                                    backgroundColor: Colors.white,
-                                                                    child: Icon(Icons.warning_amber_outlined,)),
-                                                                actions: [
-                                                                  FlatButton(
-                                                                    child: const Text('ok'),
-                                                                    onPressed: () { ScaffoldMessenger.of(context)
-                                                                        .hideCurrentMaterialBanner();},
-                                                                  ),
-                                                                ],
-                                                              )
-                                                          );
-                                                        },),
+                                                        // ReceiptChangePaymentent(callback: (value){
+                                                        //    receipt.receiptStories![i].paymentType = value;
+                                                        // },),
                                                       ],
                                                     ),
                                                   ],
